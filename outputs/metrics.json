@@ -1,0 +1,109 @@
+{
+  "seed": 42,
+  "target": "has_cluster_next (area has >=1 active dengue cluster location next week)",
+  "splits": {
+    "train": "2015-07..2017-12",
+    "validation": "2018",
+    "test": "2019-01..2020-11"
+  },
+  "validation_auc": {
+    "gbm_lr05": 0.8708,
+    "gbm_lr10": 0.8652,
+    "rf": 0.8831
+  },
+  "selected_model": "rf",
+  "test": {
+    "n": 3740,
+    "positives": 1666,
+    "auc": 0.9448,
+    "avg_precision": 0.9383,
+    "pr_auc": 0.9383,
+    "precision_at_05": 0.9047,
+    "recall_at_05": 0.7749,
+    "f1_at_05": 0.8348
+  },
+  "features": [
+    "temp_mean_c_lag1",
+    "temp_mean_c_lag2",
+    "temp_mean_c_lag4",
+    "temp_mean_c_lag8",
+    "rain_total_mm_lag1",
+    "rain_total_mm_lag2",
+    "rain_total_mm_lag4",
+    "rain_total_mm_lag8",
+    "has_cluster_lag1",
+    "has_cluster_lag2",
+    "has_cluster_lag4",
+    "n_locations_lag1",
+    "n_locations_lag2",
+    "n_locations_lag4",
+    "total_cases_lag1",
+    "total_cases_lag2",
+    "total_cases_lag4",
+    "log_popdens",
+    "area_km2",
+    "month_sin",
+    "month_cos"
+  ],
+  "feature_importances": {
+    "total_cases_lag1": 0.2044,
+    "has_cluster_lag1": 0.1272,
+    "n_locations_lag1": 0.1142,
+    "total_cases_lag2": 0.0959,
+    "n_locations_lag2": 0.0872,
+    "total_cases_lag4": 0.0636,
+    "log_popdens": 0.0579,
+    "has_cluster_lag2": 0.0519,
+    "n_locations_lag4": 0.049,
+    "has_cluster_lag4": 0.0417,
+    "area_km2": 0.0178,
+    "rain_total_mm_lag4": 0.0107,
+    "temp_mean_c_lag2": 0.0105,
+    "rain_total_mm_lag2": 0.0101,
+    "rain_total_mm_lag8": 0.0101,
+    "temp_mean_c_lag4": 0.0101,
+    "temp_mean_c_lag1": 0.0099,
+    "temp_mean_c_lag8": 0.0095,
+    "rain_total_mm_lag1": 0.0086,
+    "month_sin": 0.0049,
+    "month_cos": 0.0048
+  },
+  "ecology_sanity": {
+    "temp_mean_c_lag4": {
+      "corr_with_target": 0.0697,
+      "mean_when_pos": 27.153,
+      "mean_when_neg": 27.05
+    },
+    "rain_total_mm_lag4": {
+      "corr_with_target": -0.0013,
+      "mean_when_pos": 49.867,
+      "mean_when_neg": 49.963
+    },
+    "temp_mean_c_lag8": {
+      "corr_with_target": 0.047,
+      "mean_when_pos": 27.118,
+      "mean_when_neg": 27.049
+    },
+    "rain_total_mm_lag8": {
+      "corr_with_target": 0.0018,
+      "mean_when_pos": 49.046,
+      "mean_when_neg": 48.914
+    },
+    "log_popdens": {
+      "corr_with_target": 0.4542,
+      "mean_when_pos": 9.063,
+      "mean_when_neg": 5.277
+    }
+  },
+  "ablation_no_lag1_features": {
+    "n": 3740,
+    "positives": 1666,
+    "auc": 0.9361,
+    "avg_precision": 0.9261,
+    "pr_auc": 0.9261,
+    "precision_at_05": 0.9016,
+    "recall_at_05": 0.7263,
+    "f1_at_05": 0.8045,
+    "note": "same protocol, lag-1 persistence features removed; measures emerging-risk signal from weather/history/static features"
+  }
+}
